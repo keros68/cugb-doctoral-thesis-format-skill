@@ -1,6 +1,6 @@
 # Notice
 
-This repository contains a Codex skill and helper scripts for checking China University of Geosciences (Beijing) doctoral thesis formatting.
+This repository contains a Codex skill and helper scripts for checking the target doctoral thesis template formatting.
 
 The code, skill instructions, and derived workflow notes are released under the MIT License.
 

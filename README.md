@@ -1,12 +1,12 @@
 # CUGB Doctoral Thesis Format Skill
 
-一个用于中国地质大学（北京）博士学位论文 Word 格式预检和排版辅助的 Codex skill。
+一个用于目标博士论文模板 Word 格式预检和排版辅助的 Codex skill。
 
 它的目标不是替代学校格式检测系统，而是在提交前先做一轮本地体检：页眉页脚、分节、页边距、目录域、图表题、关键词、参考文献和常见标点问题，能在本地发现的尽量先发现。
 
 ## 适用场景
 
-- 按《中国地质大学（北京）博士学位论文模板》检查 `.docx`。
+- 按内置博士论文模板检查 `.docx`。
 - 提交学校检测前，先生成本地预检报告。
 - 排查 Word 暗层问题：section、奇偶页页眉、页脚距、隐藏页眉残留。
 - 把这个项目作为其他学校论文格式 skill 的起点。
@@ -28,8 +28,10 @@ C:\Users\<你的用户名>\.codex\skills\cugb-doctoral-thesis-format
 安装后可以这样调用：
 
 ```text
-使用 $cugb-doctoral-thesis-format 帮我预检这篇中国地质大学（北京）博士论文 DOCX。
+使用 $cugb-doctoral-thesis-format 帮我预检这篇博士论文 DOCX。
 ```
+
+指定 skill 后，不需要在提示里重复学校全称；规则已经在 skill 内部。
 
 ## 一键预检
 
@@ -49,6 +51,24 @@ python scripts/precheck_cugb_doctoral_thesis.py path/to/thesis.docx --output-dir
 ```bash
 python scripts/precheck_cugb_doctoral_thesis.py path/to/thesis.docx --detection-report path/to/report.html
 ```
+
+## 预检和修改边界
+
+当前脚本主要负责检查、汇总和定位问题。真正修改论文时，建议让 Codex 先备份，再只改确定安全的项目，并输出改动清单。
+
+适合自动或半自动处理：
+
+- 页边距、页眉页脚文本、常规段落样式。
+- 标题、图题、表题、参考文献的段落格式。
+- 明显空段、部分全角/半角标点、目录域和 TOC 字段风险提示。
+
+不适合盲目一键改：
+
+- 封面个人信息、目录最终页码、交叉引用、公式编号。
+- 图片位置、图题是否跨页、页末大空白、横向页是否被接受。
+- 学校检测系统的隐藏规则，以及 Word/WPS/PDF 渲染差异。
+
+所以它更适合做“先预检、再备份修复、最后人工复核”，不要把它包装成一键通过工具。
 
 ## 其他脚本
 

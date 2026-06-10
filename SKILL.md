@@ -1,34 +1,35 @@
 ---
 name: cugb-doctoral-thesis-format
-description: Use when editing, auditing, or finalizing China University of Geosciences Beijing doctoral thesis DOC/DOCX files, especially CUGB 博士学位论文 templates, format detection reports, cover pages, declarations, abstracts, TOC, section breaks, odd/even headers, page numbers, headings, captions, formulas, punctuation, GB7714 references, and final Word submission.
+description: Use when editing, auditing, or finalizing CUGB doctoral thesis DOC/DOCX files, especially thesis templates, format detection reports, cover pages, declarations, abstracts, TOC, section breaks, odd/even headers, page numbers, headings, captions, formulas, punctuation, GB7714 references, and final Word submission.
 ---
 
-# 中国地质大学（北京）博士论文排版
+# CUGB 博士论文排版
 
 ## Overview
 
-把 CUGB 博士论文排版当成 `Word 结构 + 学校检测系统` 问题处理，不只是刷字体。封面缩进、摘要关键词、目录域、分节页眉、图表题、参考文献和全半角标点都会影响检测结论。
+把博士论文排版当成 `Word 结构 + 检测系统` 问题处理，不只是刷字体。封面缩进、摘要关键词、目录域、分节页眉、图表题、参考文献和全半角标点都会影响检测结论。
 
 ## Required Workflow
 
-1. 先读 `references/cugb-doctoral-format-rules.md`，锁定学校模板和书写指南中的硬规则。
-2. 如果用户给了格式检测报告，继续读 `references/cugb-detection-failure-modes.md`，按严重/错误/提醒分层处理。
-3. 编辑前复制出新文件版本，不覆盖原论文。
-4. 如果输入是旧版 `.doc`，先转成 `.docx`。Windows + Word 环境优先用 `scripts/convert_doc_to_docx_with_word.ps1`。
-5. 先跑：
+1. 先确认用户要做的是预检、局部修复，还是最终定稿。提示中已经指定本 skill 时，不要求用户重复学校全称。
+2. 先读 `references/cugb-doctoral-format-rules.md`，锁定模板和书写指南中的硬规则。
+3. 如果用户给了格式检测报告，继续读 `references/cugb-detection-failure-modes.md`，按严重/错误/提醒分层处理。
+4. 编辑前复制出新文件版本，不覆盖原论文；修改后输出改动清单。
+5. 如果输入是旧版 `.doc`，先转成 `.docx`。Windows + Word 环境优先用 `scripts/convert_doc_to_docx_with_word.ps1`。
+6. 先跑：
 ```bash
 python scripts/precheck_cugb_doctoral_thesis.py path/to/thesis.docx
 python scripts/extract_cugb_docx_format.py path/to/thesis.docx
 python scripts/check_cugb_doctoral_docx.py path/to/thesis.docx
 python scripts/summarize_cugb_detection_report.py path/to/format-report.html
 ```
-6. 按固定顺序修：
+7. 按固定顺序修：
    - `section / 分页 / 页码 / 奇偶页页眉`
    - `封面 / 英文封面 / 声明 / 中文摘要 / 英文摘要 / 目录`
    - `正文标题 / 正文段落 / 图题 / 表题 / 公式编号`
    - `正文引用 / 参考文献 / 标点数字 / 量和单位`
-7. 自动目录、页码域、页眉页脚、交叉引用和字段更新放到最后一轮，在 Word 中完成。
-8. 最终导出 PDF 或截图复核关键页：封面、声明、摘要、目录、第 1 章首页、每章首页、图表密集页、参考文献页、致谢/个人简历页。
+8. 自动目录、页码域、页眉页脚、交叉引用和字段更新放到最后一轮，在 Word 中完成。
+9. 最终导出 PDF 或截图复核关键页：封面、声明、摘要、目录、第 1 章首页、每章首页、图表密集页、参考文献页、致谢/个人简历页。
 
 ## Hard Rules
 
@@ -45,7 +46,16 @@ python scripts/summarize_cugb_detection_report.py path/to/format-report.html
 - 中文段落使用中文标点和全角括号；英文段落和英文参考文献按英文标点规则处理，不要机械全替换。
 - Word 预览、WPS、PDF 和检测系统可能不一致；最终以 Word 更新字段后的 PDF 和学校检测报告共同验收。
 
+## Modification Boundaries
+
+- 当前脚本以检查、汇总和定位问题为主；修改由 agent 基于报告另存新文件后执行，不直接覆盖原稿。
+- 适合自动或半自动修改：页边距、页眉页脚文本、常规段落样式、标题样式、图题表题样式、参考文献段落格式、明显空段、部分全角/半角标点。
+- 必须谨慎修改：封面个人信息、目录页码、交叉引用、公式编号、图片位置、横向页、页末大空白、图题是否与图片分离。
+- 不要承诺“一键通过”。学校检测系统的隐藏规则、Word/WPS/PDF 渲染差异、人工审美问题，只能通过最终 PDF 和学校检测报告复核。
+
 ## Quick Commands
+
+这些脚本主要用于预检，不会直接改写论文文件。
 
 旧版 `.doc` 转 `.docx`：
 ```powershell
