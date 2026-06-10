@@ -9,6 +9,10 @@ description: Use when editing, auditing, or finalizing CUGB doctoral thesis DOC/
 
 把博士论文排版当成 `Word 结构 + 检测系统` 问题处理，不只是刷字体。封面缩进、摘要关键词、目录域、分节页眉、图表题、参考文献和全半角标点都会影响检测结论。
 
+## Version Scope
+
+本 skill 的资产来自 `2021年修订` 博士学位论文书写指南和模板。后续如果学校或学院发布新版模板、归档通知或检测规则，必须优先采用最新文件，并同步更新 `assets/`、`references/` 和检查脚本。
+
 ## Required Workflow
 
 1. 先确认用户要做的是预检、局部修复，还是最终定稿。提示中已经指定本 skill 时，不要求用户重复学校全称。
@@ -33,7 +37,7 @@ python scripts/summarize_cugb_detection_report.py path/to/format-report.html
 
 ## Hard Rules
 
-- 以当年学校/学院最新通知为准；本 skill 的资产来自 `2021年修订` 博士学位论文书写指南和模板。
+- 以当年学校/学院最新通知为准；不要把 2021 版资产当成永久有效的规范。
 - 模板页面为 A4 纵向，页边距上 2.5 cm、下 2.0 cm、左 2.5 cm、右 2.0 cm，页眉/页脚距边界 1.5 cm。
 - 页眉从第 1 章开始：奇数页为 `中国地质大学（北京）博士学位论文`，偶数页为当前章题；宋体五号，居中。检测报告会把偶数页章题错误列为严重问题。
 - 页码位于页面底端居中；前置部分单独编号，正文从引言开始连续编号。
@@ -87,8 +91,8 @@ python scripts/precheck_cugb_doctoral_thesis.py path/to/thesis.docx --detection-
 - `references/cugb-doctoral-format-rules.md`：学校博士论文结构、页面、封面、摘要、目录、正文、图表公式和参考文献规则。
 - `references/cugb-detection-failure-modes.md`：根据真实格式检测报告匿名提炼出的高频扣分点和修复顺序。
 - `references/cugb-revision-playbook.md`：从草稿到检测合格的推荐处理流程。
-- `assets/cugb-doctoral-writing-guide-2021.doc` / `.docx`：博士学位论文书写指南。
-- `assets/cugb-doctoral-thesis-template-2021.doc` / `.docx`：博士学位论文模板。
+- `assets/cugb-doctoral-writing-guide-2021.doc` / `.docx`：2021 年修订版博士学位论文书写指南。
+- `assets/cugb-doctoral-thesis-template-2021.doc` / `.docx`：2021 年修订版博士学位论文模板。
 - `scripts/extract_cugb_docx_format.py`：提取 section、页眉页脚、段落、表格和样式概览。
 - `scripts/check_cugb_doctoral_docx.py`：按 CUGB 博士模板和检测报告高频项做启发式检查。
 - `scripts/summarize_cugb_detection_report.py`：汇总学校格式检测 HTML 报告中的严重/错误/提醒和问题类别。

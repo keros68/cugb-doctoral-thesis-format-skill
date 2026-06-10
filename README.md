@@ -1,6 +1,6 @@
 # CUGB Doctoral Thesis Format Skill
 
-一个用于目标博士论文模板 Word 格式预检和排版辅助的 Codex skill。
+一个用于目标博士论文模板 Word 格式预检和排版辅助的 AI skill 或 agent 工作流。
 
 它的目标不是替代学校格式检测系统，而是在提交前先做一轮本地体检：页眉页脚、分节、页边距、目录域、图表题、关键词、参考文献和常见标点问题，能在本地发现的尽量先发现。
 
@@ -9,11 +9,17 @@
 - 按内置博士论文模板检查 `.docx`。
 - 提交学校检测前，先生成本地预检报告。
 - 排查 Word 暗层问题：section、奇偶页页眉、页脚距、隐藏页眉残留。
-- 把这个项目作为其他学校论文格式 skill 的起点。
+- 把这个项目作为其他学校论文格式 skill 的起点；不绑定某一个 AI 工具。
 
-## 安装
+## 模板版本
 
-把仓库克隆到 Codex skills 目录：
+本仓库内置资产来自 `2021年修订` 博士学位论文书写指南和模板。后续如果学校或学院发布新版模板、归档要求或检测规则，应以最新通知为准，并更新 `assets/`、`references/` 和检查脚本。
+
+## 使用方式
+
+这个项目的核心是 `SKILL.md + assets/ + references/ + scripts/`，可以给不同 AI agent 使用。
+
+如果使用 Codex，可以把仓库克隆到 skills 目录：
 
 ```powershell
 git clone https://github.com/keros68/cugb-doctoral-thesis-format-skill.git "$env:USERPROFILE\.codex\skills\cugb-doctoral-thesis-format"
@@ -25,13 +31,15 @@ git clone https://github.com/keros68/cugb-doctoral-thesis-format-skill.git "$env
 C:\Users\<你的用户名>\.codex\skills\cugb-doctoral-thesis-format
 ```
 
-安装后可以这样调用：
+在支持 skill 的工具里，可以这样调用：
 
 ```text
 使用 $cugb-doctoral-thesis-format 帮我预检这篇博士论文 DOCX。
 ```
 
 指定 skill 后，不需要在提示里重复学校全称；规则已经在 skill 内部。
+
+如果使用其他 AI 工具，可以把 `SKILL.md` 作为项目说明加载，把 `assets/`、`references/` 和 `scripts/` 一起提供给 agent。
 
 ## 一键预检
 
@@ -54,7 +62,7 @@ python scripts/precheck_cugb_doctoral_thesis.py path/to/thesis.docx --detection-
 
 ## 预检和修改边界
 
-当前脚本主要负责检查、汇总和定位问题。真正修改论文时，建议让 Codex 先备份，再只改确定安全的项目，并输出改动清单。
+当前脚本主要负责检查、汇总和定位问题。真正修改论文时，建议让 AI agent 先备份，再只改确定安全的项目，并输出改动清单。
 
 适合自动或半自动处理：
 
