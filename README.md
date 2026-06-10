@@ -112,6 +112,12 @@ powershell -ExecutionPolicy Bypass -File scripts/convert_doc_to_docx_with_word.p
 
 0 到 1 的问题是“skill 应该长什么样”。这个项目给出一个基准。后面 1 到 100，就是按每个学校的模板和报告继续模仿、校准、测试。
 
+## 参考与致谢
+
+本项目的组织思路参考了 [CTctikki/csu-thesis-format-Skill](https://github.com/CTctikki/csu-thesis-format-Skill)：把学校论文模板、格式规则、常见问题和检查脚本整理成一个可交给 AI agent 使用的工作流。
+
+本仓库面向另一套博士论文模板重新整理规则、资产和检查逻辑，不包含原项目的学校模板或个人论文材料。
+
 ## 边界
 
 - 本地预检不能替代学校最终检测。
