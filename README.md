@@ -4,6 +4,9 @@
 
 它的目标不是替代学校格式检测系统，而是在提交前先做一轮本地体检：页眉页脚、分节、页边距、目录域、图表题、关键词、参考文献和常见标点问题，能在本地发现的尽量先发现。
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Agent Skill](https://img.shields.io/badge/Agent%20Skill-SKILL.md-green.svg)](SKILL.md)
+
 ## 适用场景
 
 - 按内置博士论文模板检查 `.docx`。
