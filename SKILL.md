@@ -1,6 +1,6 @@
 ---
 name: cugb-doctoral-thesis-format
-description: Use when editing, auditing, or finalizing CUGB doctoral thesis DOC/DOCX files, especially thesis templates, format detection reports, cover pages, declarations, abstracts, TOC, section breaks, odd/even headers, page numbers, headings, captions, formulas, punctuation, GB7714 references, and final Word submission.
+description: Use when editing, auditing, or finalizing CUGB doctoral thesis DOC/DOCX files, especially thesis templates, format detection reports, cover pages, declarations, abstracts, TOC, section breaks, odd/even headers, page numbers, headings, captions, formulas, punctuation, GB7714 references, and final Word submission. Covers China University of Geosciences (Beijing) (中国地质大学（北京）) doctoral dissertations (博士学位论文格式预检). Not for master's theses or other universities' templates.
 ---
 
 # CUGB 博士论文排版
@@ -20,7 +20,7 @@ description: Use when editing, auditing, or finalizing CUGB doctoral thesis DOC/
 3. 如果用户给了格式检测报告，继续读 `references/cugb-detection-failure-modes.md`，按严重/错误/提醒分层处理。
 4. 编辑前复制出新文件版本，不覆盖原论文；修改后输出改动清单。
 5. 如果输入是旧版 `.doc`，先转成 `.docx`。Windows + Word 环境优先用 `scripts/convert_doc_to_docx_with_word.ps1`。
-6. 先跑：
+6. `precheck_cugb_doctoral_thesis.py` 是一键入口，内部已调用 `check_cugb_doctoral_docx` 和 `extract_cugb_docx_format` 并生成合并报告；单独运行 `extract` 仅用于人工核对原始 section/样式明细，单独运行 `check --fail-on-error` 仅用于门禁式判定。默认只跑 precheck 即可，无需四个脚本全跑。先跑：
 ```bash
 python scripts/precheck_cugb_doctoral_thesis.py path/to/thesis.docx
 python scripts/extract_cugb_docx_format.py path/to/thesis.docx
@@ -33,7 +33,7 @@ python scripts/summarize_cugb_detection_report.py path/to/format-report.html
    - `正文标题 / 正文段落 / 图题 / 表题 / 公式编号`
    - `正文引用 / 参考文献 / 标点数字 / 量和单位`
 8. 自动目录、页码域、页眉页脚、交叉引用和字段更新放到最后一轮，在 Word 中完成。
-9. 最终导出 PDF 或截图复核关键页：封面、声明、摘要、目录、第 1 章首页、每章首页、图表密集页、参考文献页、致谢/个人简历页。
+9. 进入最终定稿排版阶段前，完整阅读 `references/cugb-revision-playbook.md`。最终导出 PDF 或截图复核关键页：封面、声明、摘要、目录、第 1 章首页、每章首页、图表密集页、参考文献页、致谢/个人简历页。
 
 ## Hard Rules
 
@@ -93,8 +93,10 @@ python scripts/precheck_cugb_doctoral_thesis.py path/to/thesis.docx --detection-
 - `references/cugb-revision-playbook.md`：从草稿到检测合格的推荐处理流程。
 - `assets/cugb-doctoral-writing-guide-2021.doc` / `.docx`：2021 年修订版博士学位论文书写指南。
 - `assets/cugb-doctoral-thesis-template-2021.doc` / `.docx`：2021 年修订版博士学位论文模板。
+- 以上两项资产只读取 `.docx` 版本；`.doc` 是二进制遗留格式、无法直接解析，仅作模板溯源保留，不要尝试读取或解析。
 - `scripts/extract_cugb_docx_format.py`：提取 section、页眉页脚、段落、表格和样式概览。
 - `scripts/check_cugb_doctoral_docx.py`：按 CUGB 博士模板和检测报告高频项做启发式检查。
+- `scripts/test_cugb_format_tools.py`：脚本自身的 pytest 单元测试，用于验证检查逻辑，不用于检查用户论文。
 - `scripts/summarize_cugb_detection_report.py`：汇总学校格式检测 HTML 报告中的严重/错误/提醒和问题类别。
 - `scripts/precheck_cugb_doctoral_thesis.py`：一键生成 Markdown/JSON 本地预检报告，合并脚本检查、Word COM 页眉审计、隐藏页眉残留和人工复核清单。
 - `scripts/convert_doc_to_docx_with_word.ps1`：使用 Microsoft Word COM 将旧 `.doc` 转成 `.docx`。
