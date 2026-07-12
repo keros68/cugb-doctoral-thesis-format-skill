@@ -20,13 +20,12 @@ description: Use when editing, auditing, or finalizing CUGB doctoral thesis DOC/
 3. 如果用户给了格式检测报告，继续读 `references/cugb-detection-failure-modes.md`，按严重/错误/提醒分层处理。
 4. 编辑前复制出新文件版本，不覆盖原论文；修改后输出改动清单。
 5. 如果输入是旧版 `.doc`，先转成 `.docx`。Windows + Word 环境优先用 `scripts/convert_doc_to_docx_with_word.ps1`。
-6. `precheck_cugb_doctoral_thesis.py` 是一键入口，内部已调用 `check_cugb_doctoral_docx` 和 `extract_cugb_docx_format` 并生成合并报告；单独运行 `extract` 仅用于人工核对原始 section/样式明细，单独运行 `check --fail-on-error` 仅用于门禁式判定。默认只跑 precheck 即可，无需四个脚本全跑。先跑：
+6. 默认只跑一键预检入口（内部已调用 `check_cugb_doctoral_docx` 和 `extract_cugb_docx_format` 并生成合并报告）：
 ```bash
 python scripts/precheck_cugb_doctoral_thesis.py path/to/thesis.docx
-python scripts/extract_cugb_docx_format.py path/to/thesis.docx
-python scripts/check_cugb_doctoral_docx.py path/to/thesis.docx
-python scripts/summarize_cugb_detection_report.py path/to/format-report.html
 ```
+   按需补充：`extract_cugb_docx_format.py` 仅用于人工核对原始 section/样式明细；`check_cugb_doctoral_docx.py --fail-on-error` 仅用于门禁式判定；`summarize_cugb_detection_report.py path/to/format-report.html` 仅在用户提供学校检测报告 HTML 时运行。
+   如果用户只要求预检，跑完本步、输出报告后即可结束，不进入第 7-9 步的修改与定稿流程。
 7. 按固定顺序修：
    - `section / 分页 / 页码 / 奇偶页页眉`
    - `封面 / 英文封面 / 声明 / 中文摘要 / 英文摘要 / 目录`
