@@ -11,11 +11,10 @@
 运行：
 
 ```bash
-python scripts/extract_cugb_docx_format.py thesis.docx
-python scripts/check_cugb_doctoral_docx.py thesis.docx
-python scripts/summarize_cugb_detection_report.py 格式检测报告.html
 python scripts/precheck_cugb_doctoral_thesis.py thesis.docx --output-dir precheck-output
 ```
+
+按需补充：`extract_cugb_docx_format.py`（人工核对原始 section/样式明细）、`check_cugb_doctoral_docx.py --fail-on-error`（门禁式判定）、`summarize_cugb_detection_report.py 格式检测报告.html`（仅在拿到学校检测报告 HTML 时运行）。
 
 重点看：
 
