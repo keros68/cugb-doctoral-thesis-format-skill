@@ -132,3 +132,7 @@ powershell -ExecutionPolicy Bypass -File scripts/convert_doc_to_docx_with_word.p
 - 本地预检不能替代学校最终检测。
 - 页码、目录页码、页末大空白、图题是否和图片分离，仍然需要 Word 更新字段后导出 PDF 人工看。
 - 不要把个人论文、学号、未公开检测报告提交到公开仓库。
+
+---
+
+**同系列 Agent Skills**：[sci-select](https://github.com/keros68/sci-select)（选刊+投稿前审查） · [academic-reference-matcher](https://github.com/keros68/academic-reference-matcher)（文献引用） · [abstract-fig](https://github.com/keros68/abstract-fig)（图形摘要） · [cugb-doctoral-thesis-format](https://github.com/keros68/cugb-doctoral-thesis-format)（学位论文格式） · [ai-cross](https://github.com/keros68/ai-cross)（多模型交叉验证）｜全览见 [keros68](https://github.com/keros68)
