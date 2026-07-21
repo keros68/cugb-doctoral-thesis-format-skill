@@ -1,8 +1,8 @@
-# CUGB Doctoral Thesis Format Skill
+# cugb-doctoral-thesis-format
 
-一个用于目标博士论文模板 Word 格式预检和排版辅助的 AI skill 或 agent 工作流。
+中国地质大学（北京）博士学位论文的 Word 格式预检与排版辅助 skill，也可作为其他学校格式 skill 的起点。
 
-它的目标不是替代学校格式检测系统，而是在提交前先做一轮本地体检：页眉页脚、分节、页边距、目录域、图表题、关键词、参考文献和常见标点问题，能在本地发现的尽量先发现。
+它不替代学校格式检测系统，只是在提交前先做一轮本地体检：页眉页脚、分节、页边距、目录域、图表题、关键词、参考文献和常见标点问题，能在本地发现的尽量先发现。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Agent Skill](https://img.shields.io/badge/Agent%20Skill-SKILL.md-green.svg)](SKILL.md)
@@ -24,14 +24,14 @@
 
 `assets/` 下的学校模板和书写指南仅作为格式检查与规则校准材料保留，仍受其原始权属和使用条款约束。仓库的 MIT License 不额外授予这些第三方或学校模板材料的再授权权利。改造成其他学校版本时，请替换为你有权使用的模板与规范文件，并保留资产说明。
 
-## 使用方式
+## 快速开始
 
-这个项目的核心是 `SKILL.md + assets/ + references/ + scripts/`，可以给不同 AI agent 使用。
+项目核心是 `SKILL.md + assets/ + references/ + scripts/`，可以给不同 AI agent 使用。
 
 如果使用 Codex，可以把仓库克隆到 skills 目录：
 
 ```powershell
-git clone https://github.com/keros68/cugb-doctoral-thesis-format-skill.git "$env:USERPROFILE\.codex\skills\cugb-doctoral-thesis-format"
+git clone https://github.com/keros68/cugb-doctoral-thesis-format.git "$env:USERPROFILE\.codex\skills\cugb-doctoral-thesis-format"
 ```
 
 也可以直接复制本仓库文件夹到：
@@ -103,9 +103,7 @@ powershell -ExecutionPolicy Bypass -File scripts/convert_doc_to_docx_with_word.p
 
 ## 改成别的学校
 
-核心思路很简单：不要让 AI 凭空猜格式，给它足够的证据。
-
-至少准备：
+核心思路：不让 AI 凭空猜格式，给它足够的证据。至少准备：
 
 - 学校官方论文模板，最好有 `.doc/.docx`。
 - 学校论文书写指南、格式规范 PDF 或网页。
@@ -135,4 +133,4 @@ powershell -ExecutionPolicy Bypass -File scripts/convert_doc_to_docx_with_word.p
 
 ---
 
-**同系列 Agent Skills**：[sci-select](https://github.com/keros68/sci-select)（选刊+投稿前审查） · [academic-reference-matcher](https://github.com/keros68/academic-reference-matcher)（文献引用） · [abstract-fig](https://github.com/keros68/abstract-fig)（图形摘要） · [cugb-doctoral-thesis-format](https://github.com/keros68/cugb-doctoral-thesis-format)（学位论文格式） · [ai-cross](https://github.com/keros68/ai-cross)（多模型交叉验证）｜全览见 [keros68](https://github.com/keros68)
+**同系列 Agent Skills**：[sci-select](https://github.com/keros68/sci-select)（选刊+投稿前审查） · [academic-reference-matcher](https://github.com/keros68/academic-reference-matcher)（文献引用） · [abstract-fig](https://github.com/keros68/abstract-fig)（图形摘要） · [ai-cross](https://github.com/keros68/ai-cross)（多模型交叉验证）｜全览见 [keros68](https://github.com/keros68)
