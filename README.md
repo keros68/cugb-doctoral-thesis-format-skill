@@ -1,5 +1,7 @@
 # cugb-doctoral-thesis-format
 
+> **本项目已并入 [xiaoyu-skill](https://github.com/keros68/xiaoyu-skill/tree/main/skills/cugb-doctoral-thesis-format)。本仓库保留为只读历史入口，后续更新请前往新仓库。**
+
 cugb-doctoral-thesis-format 是一个 AI agent skill 及配套 Python 脚本，用于检查中国地质大学（北京）博士学位论文 `.docx` 的 Word 格式，并生成本地预检报告。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
